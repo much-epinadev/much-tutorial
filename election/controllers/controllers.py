@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo import http
+from odoo import http, _
 import json
 
 class Election(http.Controller):
@@ -10,10 +10,10 @@ class Election(http.Controller):
             voter = http.request.env["election.voter"].sudo().browse(int(voter_id))
 
             if not voter.exists():
-                return {"error": "Unexisting voter {}".format(voter.id)}
+                return {"error": f"Unexisting voter {voter.id}"}
 
             if not candidate.exists():
-                return {"error": "Unexisting candidate {}".format(candidate.id)}
+                return {"error": f"Unexisting candidate {candidate.id}"}
 
             voter.vote = candidate
             return {"sucess": True}

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api, exceptions
+from odoo import models, fields, api, exceptions, _
 import base64
 import io
 
@@ -9,7 +9,7 @@ class DataImport(models.TransientModel):
     _name = "election.data.import"
     _description = "Data Import"
 
-    csv_file = fields.Binary(string="CSV Election file")
+    csv_file = fields.Binary(string=_("CSV Election file"))
 
     def _get_voter_object(self, voter_name):
         voter_model = self.env["election.voter"]
@@ -40,5 +40,5 @@ class DataImport(models.TransientModel):
                         voter.vote = candidate
                     else:
                         raise exceptions.UserError(
-                            "Candidate: {} not found!".format(candidate_name)
+                            f'Candidate: {candidate_name} not found!'
                         )
