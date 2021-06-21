@@ -15,4 +15,7 @@
         'views/voter.xml',
         'wizards/data_import.xml',
     ],
+    'demo': [
+        'demo/demo.xml'
+    ]
 }
