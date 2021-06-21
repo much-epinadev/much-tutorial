@@ -1,0 +1,46 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="election_candidate_wiew_list">
+      <field name="name">Candidates List</field>
+      <field name="model">election.candidate</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name" />
+          <field name="total_votes" />
+        </tree>
+      </field>
+    </record>
+
+
+    <!-- explicit form definition -->
+    <record id="election_candidate_view_form" model="ir.ui.view">
+      <field name="name">election.candidate.view.form</field>
+      <field name="model">election.candidate</field>
+      <field name="arch" type="xml">
+        <form string="">
+          <sheet>
+            <group>
+              <field name="name" />
+              <field name="total_votes" />
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="candidate_action_window">
+      <field name="name">Candidate</field>
+      <field name="res_model">election.candidate</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Top menu item -->
+    <menuitem name="Election" id="election.menu_root" />
+
+    <!-- menu categories -->
+    <menuitem name="Candidate" id="election.candidate_menu" action="candidate_action_window" parent="election.menu_root" />
+
+  </data>
+</odoo>

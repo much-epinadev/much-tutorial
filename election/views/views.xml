@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="election.list">
+      <field name="name">election list</field>
+      <field name="model">election.election</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="election.action_window">
+      <field name="name">election window</field>
+      <field name="res_model">election.election</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- server action to the one above -->
+
+    <record model="ir.actions.server" id="election.action_server">
+      <field name="name">election server</field>
+      <field name="model_id" ref="model_election_election"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+
+
+    <!-- Top menu item -->
+
+    <menuitem name="election" id="election.menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Menu 1" id="election.menu_1" parent="election.menu_root"/>
+    <menuitem name="Menu 2" id="election.menu_2" parent="election.menu_root"/>
+
+    <!-- actions -->
+
+    <menuitem name="List" id="election.menu_1_list" parent="election.menu_1"
+              action="election.action_window"/>
+    <menuitem name="Server to list" id="election" parent="election.menu_2"
+              action="election.action_server"/>
+
+  </data>
+</odoo>

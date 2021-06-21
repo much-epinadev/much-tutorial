@@ -1,0 +1,25 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+        <record model="ir.ui.view" id="election_voter_wiew_list">
+            <field name="name">Voter</field>
+            <field name="model">election.voter</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="vote" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="voter_action_window">
+            <field name="name">Voter</field>
+            <field name="res_model">election.voter</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Voter menu category -->
+        <menuitem name="Voter" id="election.voter_menu" action="voter_action_window" parent="election.menu_root" />
+    </data>
+</odoo>

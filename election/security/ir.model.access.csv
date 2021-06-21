@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+acl_election_candidate,election.candidate,model_election_candidate,base.group_user,1,1,1,1
+acl_election_voter,election.voter,model_election_voter,base.group_user,1,1,1,1
+acl_election_import,election.data.import,model_election_data_import,base.group_user,1,1,1,1
