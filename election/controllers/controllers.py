@@ -4,10 +4,12 @@ import json
 
 class Election(http.Controller):
 
+    request = http.request
+
     def set_vote(self, candidate_id, voter_id):
         if candidate_id and voter_id:
-            candidate = http.request.env["election.candidate"].sudo().browse(int(candidate_id))
-            voter = http.request.env["election.voter"].sudo().browse(int(voter_id))
+            candidate = self.request.env["election.candidate"].sudo().browse(int(candidate_id))
+            voter = self.request.env["election.voter"].sudo().browse(int(voter_id))
 
             if not voter.exists():
                 return {"error": f"Unexisting voter {voter.id}"}
@@ -27,7 +29,7 @@ class Election(http.Controller):
     @http.route("/election/get_leading_candidate", auth="none")
     def get_leading_candidate(self):
         # Candidate with the highest amount of votes
-        candidates = http.request.env["election.candidate"].sudo().search([])
+        candidates = self.request.env["election.candidate"].sudo().search([])
         leading = None
 
         if len(candidates) > 0:
@@ -49,6 +51,6 @@ class Election(http.Controller):
     @http.route("/election/vote/json", auth="none", methods=["POST"], type="json")
     def set_vote_via_json(self):
         return self.set_vote(
-            http.request.jsonrequest.get("candidate_id"),
-            http.request.jsonrequest.get("voter_id"),
+            self.request.jsonrequest.get("candidate_id"),
+            self.request.jsonrequest.get("voter_id"),
         )
