@@ -9,6 +9,7 @@ class candidate(models.Model):
     _order = 'total_votes desc'
 
     name = fields.Char()
+    color = fields.Integer(string=_('Badge color'))
     voter_ids = fields.One2many("election.voter", "vote", string=_("Voters"))
     total_votes = fields.Integer(
         _("Total votes"), compute="_compute_total_votes", store=True

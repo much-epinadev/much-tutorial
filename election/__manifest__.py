@@ -6,7 +6,7 @@
         Official US Election App
         """,
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base', 'web'],
 
     # always loaded
     'data': [
@@ -14,6 +14,7 @@
         'views/candidate.xml',
         'views/voter.xml',
         'wizards/data_import.xml',
+        'views/templates.xml',
     ],
     'demo': [
         'demo/demo.xml'
