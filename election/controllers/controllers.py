@@ -22,9 +22,17 @@ class Election(http.Controller):
         return { "error": "Missing params" }
 
     # ---------- Endpoints handlers ------------------
-    @http.route("/election/", auth="public")
+    @http.route("/election/", auth="public", type='http')
     def index(self, **kw):
-        return "Hello, world"
+        img  = '/election/static/description/icon.png'
+        html_response = f'''<html>
+            <body>
+                <h3>Awesome election module</h3>
+                <img src={img}/>
+            </body>
+        </html>'''
+
+        return html_response
 
     @http.route("/election/get_leading_candidate", auth="none")
     def get_leading_candidate(self):
